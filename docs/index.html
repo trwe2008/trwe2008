@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="<!-- APP_DESCRIPTION -->" />
+  <title><!-- APP_NAME --> - 下载</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --card: #1a2332;
+      --text: #e7ecf3;
+      --muted: #8b9cb3;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --border: #2d3a4f;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    .wrap {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 48px 20px 64px;
+    }
+    .icon {
+      width: 88px;
+      height: 88px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      box-shadow: 0 12px 40px rgba(59, 130, 246, 0.25);
+    }
+    .icon img {
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      object-fit: cover;
+    }
+    h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; }
+    .version { color: var(--muted); font-size: 0.95rem; margin-bottom: 20px; }
+    .desc { color: var(--muted); margin-bottom: 28px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1.05rem;
+      transition: background 0.15s;
+    }
+    .btn:hover { background: var(--accent-hover); }
+    .btn.secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      margin-top: 10px;
+    }
+    .btn.secondary:hover { border-color: var(--accent); color: var(--accent); }
+    .hint {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 14px;
+    }
+    .steps {
+      margin-top: 12px;
+      padding-left: 1.2em;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .steps li { margin-bottom: 6px; }
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="icon" id="app-icon"><!-- APP_INITIAL --></div>
+    <h1><!-- APP_NAME --></h1>
+    <p class="version">版本 <!-- APP_VERSION --></p>
+    <p class="desc"><!-- APP_DESCRIPTION --></p>
+
+    <div class="card">
+      <!-- 把 href 改成你在 GitHub Releases 里的真实下载链接 -->
+      <a class="btn" id="download-android" href="<!-- ANDROID_DOWNLOAD_URL -->">
+        下载 Android 版 (APK)
+      </a>
+      <!-- 如有 Windows 版，取消下面注释并填写链接 -->
+      <!--
+      <a class="btn secondary" href="<!-- WINDOWS_DOWNLOAD_URL -->">
+        下载 Windows 版
+      </a>
+      -->
+      <p class="hint">若浏览器提示「不安全」或「未知来源」，属正常情况，请选择仍要下载。</p>
+    </div>
+
+    <div class="card">
+      <strong>Android 安装步骤</strong>
+      <ol class="steps">
+        <li>下载 APK 文件</li>
+        <li>打开文件，允许「安装未知应用」</li>
+        <li>按提示完成安装</li>
+      </ol>
+    </div>
+
+    <footer>由 GitHub Pages 托管 · 无需自备服务器</footer>
+  </div>
+  <script>
+    // 可选：把图标换成图片。把 icon.png 放到 docs/ 目录后取消注释：
+    // document.getElementById('app-icon').innerHTML =
+    //   '<img src="icon.png" alt="应用图标" />';
+  </script>
+</body>
+</html>
