@@ -99,9 +99,7 @@
     <p class="desc">Telegram X Android 客户端，点击下方按钮下载安装包。</p>
 
     <div class="card">
-      <a class="btn" id="download-android" href="https://github.com/trwe2008/trwe2008/releases/download/1/Telegram-X-0.28.3.1785.apk">
-        下载 Android 版 (APK)
-      </a>
+      <a class="btn" id="download-android" href="#">下载 Android 版 (APK)</a>
       <p class="hint">若浏览器提示「不安全」或「未知来源」，属正常情况，请选择仍要下载。</p>
     </div>
 
@@ -116,5 +114,12 @@
 
     <footer>由 GitHub Pages 托管 · 无需自备服务器</footer>
   </div>
+  <script>
+    (function () {
+      var base = "https://github.com/trwe2008/trwe2008/releases/download/1/";
+      var file = "Telegram-X-0.28.3.1785.apk";
+      document.getElementById("download-android").href = base + file;
+    })();
+  </script>
 </body>
 </html>
