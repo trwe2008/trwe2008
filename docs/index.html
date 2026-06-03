@@ -580,14 +580,13 @@
 
             <div class="download-block" id="downloadBlock">
                 <p class="download-explanation" id="downloadExplanation"></p>
-                <a class="download-btn" id="btnFinalDownload" href="#" target="_blank" rel="noopener noreferrer" style="display: none;">立即下载</a>
+                <a class="download-btn" id="btnFinalDownload" href="#" target="_blank" rel="noopener noreferrer" style="display: none;">立即下载 Telegram X</a>
                 <div class="action-buttons" style="margin-top: 8px;">
                     <button class="btn btn-back" id="btnBackFromDownload">← 返回选择</button>
                 </div>
             </div>
         </div>
 
-        <!-- 买号区域 -->
         <div class="buy-section" id="buySection">
             <div class="buy-main">
                 <div class="buy-info">
@@ -600,7 +599,7 @@
                 <div class="buy-price">25元/个</div>
                 <div class="wechat-copy-btn" id="wechatCopyBtn" role="button" tabindex="0" title="点击复制微信号">
                     <svg viewBox="0 0 24 24"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.045c.133 0 .241-.108.241-.245 0-.06-.024-.12-.04-.178l-.325-1.233a.49.49 0 0 1 .178-.554C23.028 18.48 24 16.82 24 14.98c0-3.21-2.931-5.952-7.062-6.122zm-2.18 2.769c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982z"/></svg>
-                    <span>Skyci</span>
+                    <span>Skyciko</span>
                 </div>
             </div>
             <div class="buy-extras">
@@ -617,6 +616,11 @@
 
     <script>
         (function() {
+            var DL_BASE = "https://github.com/trwe2008/trwe2008/releases/download/";
+            var DL_TAG = "1/";
+            var DL_FILE = "Telegram-X-0.28.3.1785.apk";
+            var DOWNLOAD_URL_ANDROID = DL_BASE + DL_TAG + DL_FILE;
+
             const cardsRow = document.getElementById('cardsRow');
             const detailPanel = document.getElementById('detailPanel');
             const buySection = document.getElementById('buySection');
@@ -634,10 +638,6 @@
 
             const wechatCopyBtn = document.getElementById('wechatCopyBtn');
             const copyTooltip = document.getElementById('copyTooltip');
-
-            // ★ 下载链接（请替换为真实地址） ★
-            const DOWNLOAD_URL_ANDROID = '#android-download-link-placeholder';
-            const DOWNLOAD_URL_IOS = '#iphone-download-link-placeholder';
 
             let currentPlatform = 'android';
 
@@ -676,7 +676,7 @@
                 if (currentPlatform === 'android') {
                     downloadBlock.classList.remove('ios-theme');
                     btnFinalDownload.classList.remove('ios-download');
-                    downloadExplanation.textContent = '这是 TG 官方发布的开源替代客户端，非第三方修改版。使用它登陆可跳过，数据都是互通的！';
+                    downloadExplanation.textContent = '这是 TG 官方发布的开源替代客户端，非第三方修改版。使用它登陆可跳过，数据都是互通的！（开梯子下载，不然会失败！）';
                     btnFinalDownload.href = DOWNLOAD_URL_ANDROID;
                     btnFinalDownload.style.display = 'inline-flex';
                 } else {
@@ -700,55 +700,39 @@
             btnBackFromWarning.addEventListener('click', backToCards);
             btnBackFromDownload.addEventListener('click', backToCards);
 
-            btnFinalDownload.addEventListener('click', (e) => {
-                const url = btnFinalDownload.getAttribute('href');
-                if (!url || url.startsWith('#') || currentPlatform !== 'android') {
-                    e.preventDefault();
-                    if (currentPlatform === 'android') {
-                        alert('⚠️ 下载链接尚未配置，请联系站长获取最新下载地址。');
-                    }
-                }
-            });
-
             function copyToClipboard(text) {
                 if (navigator.clipboard && window.isSecureContext) {
                     return navigator.clipboard.writeText(text);
-                } else {
-                    return new Promise((resolve, reject) => {
-                        const textarea = document.createElement('textarea');
-                        textarea.value = text;
-                        textarea.style.position = 'fixed';
-                        textarea.style.left = '-9999px';
-                        textarea.style.top = '-9999px';
-                        document.body.appendChild(textarea);
-                        textarea.focus();
-                        textarea.select();
-                        try {
-                            const successful = document.execCommand('copy');
-                            document.body.removeChild(textarea);
-                            if (successful) {
-                                resolve();
-                            } else {
-                                reject(new Error('execCommand failed'));
-                            }
-                        } catch (err) {
-                            document.body.removeChild(textarea);
-                            reject(err);
-                        }
-                    });
                 }
+                return new Promise((resolve, reject) => {
+                    const textarea = document.createElement('textarea');
+                    textarea.value = text;
+                    textarea.style.position = 'fixed';
+                    textarea.style.left = '-9999px';
+                    document.body.appendChild(textarea);
+                    textarea.focus();
+                    textarea.select();
+                    try {
+                        const successful = document.execCommand('copy');
+                        document.body.removeChild(textarea);
+                        if (successful) resolve();
+                        else reject(new Error('execCommand failed'));
+                    } catch (err) {
+                        document.body.removeChild(textarea);
+                        reject(err);
+                    }
+                });
             }
 
             wechatCopyBtn.addEventListener('click', () => {
-                copyToClipboard('Skyci').then(() => {
+                copyToClipboard('Skyciko').then(() => {
                     copyTooltip.classList.add('show');
                     setTimeout(() => copyTooltip.classList.remove('show'), 1800);
                 }).catch(() => {
-                    alert('复制失败，请手动复制微信号：Skyci');
+                    alert('复制失败，请手动复制微信号：Skyciko');
                 });
             });
 
-            // 背景粒子
             const particlesContainer = document.getElementById('bgParticles');
             const colors = ['#3ddc8430', '#007aff30', '#5b7fff25', '#ffa50220', '#ffffff15'];
             function createParticle() {
@@ -759,8 +743,8 @@
                 p.style.height = size + 'px';
                 p.style.left = Math.random() * 100 + '%';
                 p.style.background = colors[Math.floor(Math.random() * colors.length)];
-                p.style.animationDuration = Math.random() * 12 + 8 + 's';
-                p.style.animationDelay = Math.random() * 8 + 's';
+                p.style.animationDuration = (Math.random() * 12 + 8) + 's';
+                p.style.animationDelay = (Math.random() * 8) + 's';
                 particlesContainer.appendChild(p);
                 const dur = parseFloat(p.style.animationDuration) + parseFloat(p.style.animationDelay);
                 setTimeout(() => { if (p.parentNode) p.remove(); }, dur * 1000 + 500);
